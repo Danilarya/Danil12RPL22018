@@ -25,6 +25,7 @@ public class RegiserActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        //
 
         btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
