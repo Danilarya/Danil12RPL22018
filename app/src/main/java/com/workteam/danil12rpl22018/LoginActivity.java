@@ -2,7 +2,6 @@ package com.workteam.danil12rpl22018;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +16,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -25,7 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView tvToRegister;
     private EditText txtusername, txtpassword;
     private boolean isFormFilled = false;
-    Button btnLogin;
+    private Button btnLogin;
+    private String roleuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         tvToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this,RegiserActivity.class);
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
         });
@@ -60,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                     HashMap<String, String> body = new HashMap<>();
                     body.put("email", username);
                     body.put("password", password);
-                    AndroidNetworking.post("http://192.168.137.181/rentalsepeda/login.php")
+                    AndroidNetworking.post(config.BASE_URL+"login.php")
                             .addBodyParameter(body)
                             .setOkHttpClient(((Initial) getApplication()).getOkHttpClient())
                             .setPriority(Priority.MEDIUM)
@@ -68,47 +69,31 @@ public class LoginActivity extends AppCompatActivity {
                             .getAsJSONObject(new JSONObjectRequestListener() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Log.d("RBA", "respon : " + response);
-                                    String status = response.optString("success");
-                                    String message = response.optString("message");
-                                    if (status.equalsIgnoreCase("1")) {
-//                                        JSONObject payload = response.optJSONObject("payload");
-//                                        String U_ID = payload.optString("id");
-//                                        String U_LOGIN_TOKEN = payload.optString("email");
-//                                        String U_NAME = payload.optString("username");
-//                                        String U_ADDRESS = payload.optString("password");
-//                                        String U_AUTHORITY_ID_1 = payload.optString("U_AUTHORITY_ID_1");
-//                                        String U_EMAIL = payload.optString("U_EMAIL");
-//                                        String U_GROUP_ROLE = payload.optString("U_GROUP_ROLE");
-
-                                        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                                        startActivity(intent);
-                                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-                                        finish();
-                                        finishAffinity();
-//                                        preferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//                                        preferences.edit()
-//                                                .putString(Config.LOGIN_ID_SHARED_PREF, U_ID)
-//                                                .putString(Config.LOGIN_TOKEN_SHARED_PREF, U_LOGIN_TOKEN)
-//                                                .putString(Config.LOGIN_NAME_SHARED_PREF, U_NAME)
-//                                                .putString(Config.LOGIN_ADDRESS_SHARED_PREF, U_ADDRESS)
-//                                                .putString(Config.LOGIN_KTP_SHARED_PREF, U_AUTHORITY_ID_1)
-//                                                .putString(Config.LOGIN_EMAIL_SHARED_PREF, U_EMAIL)
-//                                                .putString(Config.LOGIN_GROUP_NAME_SHARED_PREF, U_GROUP_ROLE)
-//                                                .apply();
-//                                        if (U_GROUP_ROLE.equalsIgnoreCase("customer")) {
-//                                            Intent intent = new Intent(LoginActivity.this, CustomerDashboardActivity.class);
-//                                            startActivity(intent);
-//                                            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-//                                            finish();
-//                                            finishAffinity();
-//                                        }else if (U_GROUP_ROLE.equalsIgnoreCase("admin")){
-//                                            Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-//                                            startActivity(intent);
-//                                            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
-//                                            finish();
-//                                            finishAffinity();
-//                                        }
+                                    Log.d("e", "respon : " + response);
+                                    String status = response.optString(config.RESPONSE_STATUS_FIELD);
+                                    String message = response.optString(config.RESPONSE_MESSAGE_FIELD);
+//                                    String login = response.optString("login");
+                                    if (message.equalsIgnoreCase(config.RESPONSE_STATUS_VALUE_SUCCESS)) {
+                                        JSONArray loginArray = response.optJSONArray("login");
+                                        if (loginArray == null) return;
+                                        for (int i = 0; i <loginArray.length(); i++) {
+                                            final JSONObject aLogin = loginArray.optJSONObject(i);
+                                            roleuser = aLogin.optString("roleuser");
+                                        }
+                                        Log.d("AGG", "respon : " + roleuser);
+                                        if (roleuser.equalsIgnoreCase("admin")) {
+                                            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                            startActivity(intent);
+                                            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                                            finish();
+                                            finishAffinity();
+                                        }else {
+                                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                                            startActivity(intent);
+                                            Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                                            finish();
+                                            finishAffinity();
+                                        }
                                     }
                                     else {
                                         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -119,11 +104,11 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onError(ANError anError) {
 
-                                    Log.d("RBA", "onError: " + anError.getErrorBody());
-                                    Log.d("RBA", "onError: " + anError.getLocalizedMessage());
-                                    Log.d("RBA", "onError: " + anError.getErrorDetail());
-                                    Log.d("RBA", "onError: " + anError.getResponse());
-                                    Log.d("RBA", "onError: " + anError.getErrorCode());
+                                    Log.d("e", "onError: " + anError.getErrorBody());
+                                    Log.d("e", "onError: " + anError.getLocalizedMessage());
+                                    Log.d("e", "onError: " + anError.getErrorDetail());
+                                    Log.d("e", "onError: " + anError.getResponse());
+                                    Log.d("e", "onError: " + anError.getErrorCode());
                                 }
                             });
                 }
