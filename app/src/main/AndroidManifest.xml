@@ -3,6 +3,7 @@
     package="com.workteam.danil12rpl22018">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".Initial"
@@ -13,16 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AdminActivity"></activity>
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.Admin.DetailUserActivity" />
+        <activity android:name=".activity.Customer.CustomerActivity" />
+        <activity android:name=".activity.Admin.AdminUserActivity" />
+        <activity android:name=".activity.LoginActivity">
+
+        </activity>
+        <activity android:name=".activity.RegisterActivity" />
     </application>
 
 </manifest>
