@@ -17,7 +17,7 @@
             android:paddingLeft="@dimen/_10sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HALO,"
+            android:text="HALO SELAMAT DATANG,"
             android:textSize="@dimen/_15sdp"
             android:textColor="#000"
             android:textStyle="bold"/>
