@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.workteam.danil12rpl22018.R;
 
-public class DetailUserActivity extends AppCompatActivity {
+public class AdminUserDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

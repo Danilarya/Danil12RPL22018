@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView tv_Login, back;
     private EditText et_Name, et_Password, et_Email, et_NoHp, et_Address, et_NoKtp;
     private LinearLayout btn_Signup;
-    private ProgressDialog mProgress;
+
     private boolean mIsFormFilled = false;
 
     @Override
@@ -71,9 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (mIsFormFilled) {
                     HashMap<String, String> body = new HashMap<>();
-                    body.put("act", "register_konsumen");
+                    body.put("act", "register_user");
 
-                    mProgress.show();
 
                     body.put("id", phone);
                     body.put("name", name);
@@ -107,12 +106,12 @@ public class RegisterActivity extends AppCompatActivity {
                                         Log.d("HBB", "JSONException: " + e.getMessage());
                                     }
 
-                                    mProgress.dismiss();
+                                    // Progress.dismiss();
                                 }
 
                                 @Override
                                 public void onError(ANError anError) {
-                                    mProgress.dismiss();
+                                    //mProgress.dismiss();
                                     Toast.makeText(RegisterActivity.this, Config.TOAST_AN_ERROR, Toast.LENGTH_SHORT).show();
                                     Log.d("HBB", "onError: " + anError.getErrorBody());
                                     Log.d("HBB", "onError: " + anError.getLocalizedMessage());
@@ -138,9 +137,4 @@ public class RegisterActivity extends AppCompatActivity {
         et_Name = findViewById(R.id.et_Name);
         btn_Signup = findViewById(R.id.btn_Signup);
 
-        mProgress = new ProgressDialog(this);
-        mProgress.setTitle("Login");
-        mProgress.setMessage("Mohon tunggu...");
-        mProgress.setCancelable(false);
-        mProgress.setIndeterminate(true);
     }}
