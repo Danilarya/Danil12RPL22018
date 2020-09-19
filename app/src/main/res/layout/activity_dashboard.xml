@@ -17,7 +17,7 @@
             android:paddingLeft="@dimen/_10sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADMIN"
+            android:text="HALO,"
             android:textSize="@dimen/_15sdp"
             android:textColor="#000"
             android:textStyle="bold"/>
@@ -34,5 +34,5 @@
     </RelativeLayout>
 
     <include
-        layout="@layout/item_admin_dashboard_layout"/>
+        layout="@layout/item_dashboard_layout"/>
 </LinearLayout>

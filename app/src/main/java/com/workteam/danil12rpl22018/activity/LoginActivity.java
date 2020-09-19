@@ -20,8 +20,10 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.workteam.danil12rpl22018.Initial;
 import com.workteam.danil12rpl22018.R;
+import com.workteam.danil12rpl22018.activity.Admin.AdminDashboardActivity;
 import com.workteam.danil12rpl22018.activity.Admin.AdminUserActivity;
 import com.workteam.danil12rpl22018.activity.Customer.CustomerActivity;
+import com.workteam.danil12rpl22018.activity.Customer.DashboardActivity;
 import com.workteam.danil12rpl22018.helper.Config;
 
 import org.json.JSONObject;
@@ -101,8 +103,8 @@ public class LoginActivity extends AppCompatActivity {
                                                     .putString(Config.LOGIN_EMAIL_SHARED_PREF, U_EMAIL)
                                                     .apply();
 
-                                            Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
-                                            if (U_GROUP_ROLE.equalsIgnoreCase("GR_ADMIN"))  intent = new Intent(LoginActivity.this, AdminUserActivity.class);
+                                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                                            if (U_GROUP_ROLE.equalsIgnoreCase("GR_ADMIN"))  intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
 
                                             startActivity(intent);
                                             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();

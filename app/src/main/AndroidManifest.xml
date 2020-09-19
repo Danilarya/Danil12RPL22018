@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.Admin.AdminDashboardActivity"></activity>
+        <activity android:name=".activity.Customer.ProfilActivity"></activity>
+        <activity android:name=".activity.Customer.DashboardActivity" />
+        <activity android:name=".activity.Admin.AdminDashboardActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +27,7 @@
         <activity android:name=".activity.Admin.AdminUserDetailActivity" />
         <activity android:name=".activity.Customer.CustomerActivity" />
         <activity android:name=".activity.Admin.AdminUserActivity" />
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
     </application>
 
