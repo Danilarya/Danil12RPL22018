@@ -31,7 +31,7 @@
                     android:textSize="@dimen/_15ssp"
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorPrimary"
-                    android:text="SEPEDA"/>
+                    android:text="PESANAN SEPEDA"/>
 
                 <ImageView
                     android:layout_width="@dimen/_40sdp"
