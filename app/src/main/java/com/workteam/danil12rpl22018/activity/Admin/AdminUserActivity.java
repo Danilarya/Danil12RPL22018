@@ -75,18 +75,7 @@ public class AdminUserActivity extends AppCompatActivity implements SwipeRefresh
     }
 
     private void binding() {
-        ivAdd = findViewById(R.id.ivAddUser);
-        ivBack = findViewById(R.id.ivBack);
-        ivBack.setOnClickListener(new View.OnClickListener() {
-            private void doNothing() {
 
-            }
-
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         rv = findViewById(R.id.rvUserManage);
         swipeRefresh = findViewById(R.id.swipeRefresh);
