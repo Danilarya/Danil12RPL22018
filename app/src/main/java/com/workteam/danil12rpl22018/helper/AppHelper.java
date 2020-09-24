@@ -1,8 +1,10 @@
 package com.workteam.danil12rpl22018.helper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.workteam.danil12rpl22018.activity.Admin.AdminUserDetailActivity;
 import com.workteam.danil12rpl22018.model.UserAdminModel;
 
 import org.json.JSONObject;
@@ -33,9 +35,9 @@ public final class AppHelper {
         bundle.putString("U_PHONE", rowData.getU_PHONE().toUpperCase());
         bundle.putString("GROUP_ROLE", rowData.getU_GROUP_ROLE().toUpperCase());
 
-//        Intent i = new Intent(context, CustomerDetailActivity.class);
-//        i.putExtra("extra_customer", rowData);
-//        context.startActivity(i);
+        Intent i = new Intent(context, AdminUserDetailActivity.class);
+        i.putExtra("extra_user", rowData);
+        context.startActivity(i);
     }
 
 }

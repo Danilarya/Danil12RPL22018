@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.workteam.danil12rpl22018.R;
 import com.workteam.danil12rpl22018.activity.Admin.AdminUserActivity;
+import com.workteam.danil12rpl22018.helper.AppHelper;
 import com.workteam.danil12rpl22018.helper.Config;
 import com.workteam.danil12rpl22018.model.UserAdminModel;
 
@@ -80,9 +82,11 @@ public class AdminUserAdapter extends RecyclerView.Adapter<AdminUserAdapter.Item
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_name, tv_phone;
         private ImageView divDelete;
+        private LinearLayout item_user;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
+            item_user = itemView.findViewById(R.id.item_unit);
             divDelete = itemView.findViewById(R.id.ivDelete);
             tv_name = itemView.findViewById(R.id.tvNama);
             tv_phone = itemView.findViewById(R.id.tvPhone);
@@ -91,6 +95,12 @@ public class AdminUserAdapter extends RecyclerView.Adapter<AdminUserAdapter.Item
         private void bind(final UserAdminModel Amodel) {
             tv_name.setText(Amodel.getU_NAME());
             tv_phone.setText(Amodel.getU_PHONE());
+            item_user.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppHelper.goToUserAdminDetail(context, Amodel);
+                }
+            });
 
             divDelete.setOnClickListener(new View.OnClickListener() {
                 private void doNothing() {
