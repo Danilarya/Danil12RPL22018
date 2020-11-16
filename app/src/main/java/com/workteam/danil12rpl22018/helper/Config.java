@@ -41,7 +41,6 @@ public final class Config {
 
     public static final String UPLOAD_FOLDER = "uploads/";
     public static final String BASE_URL_UPLOADS = BASE_URL + UPLOAD_FOLDER;
-    public static final String FIREBASE_URL = "https://dazzling-torch-6878.firebaseio.com/ABS/";
 
     public static final String TOAST_AN_ERROR = "Mohon maaf, terjadi kendala jaringan / server";
 
