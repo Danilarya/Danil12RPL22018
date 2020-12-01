@@ -47,6 +47,7 @@ public final class AppHelper {
         item.setUNIT_KODE(rowData.optString("UNIT_KODE"));
         item.setUNIT_MERK(rowData.optString("UNIT_MERK"));
         item.setUNIT_WARNA(rowData.optString("UNIT_WARNA"));
+        item.setUNIT_JENIS(rowData.optString("UNIT_JENIS"));
         item.setUNIT_HARGA(rowData.optString("UNIT_HARGASEWA"));
         item.setUNIT_GAMBAR(rowData.optString("UNIT_GAMBAR"));
 
@@ -61,6 +62,7 @@ public final class AppHelper {
         bundle.putString("UNIT_KODE", rowData.getUNIT_KODE().toUpperCase());
         bundle.putString("UNIT_MERK", rowData.getUNIT_MERK().toUpperCase());
         bundle.putString("UNIT_WARNA", rowData.getUNIT_WARNA());
+        bundle.putString("UNIT_JENIS", rowData.getUNIT_JENIS());
         bundle.putString("UNIT_HARGASEWA", rowData.getUNIT_HARGA());
         bundle.putString("UNIT_GAMBAR", rowData.getUNIT_GAMBAR().toUpperCase());
 

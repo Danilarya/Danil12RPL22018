@@ -34,12 +34,12 @@ import java.util.Random;
  */
 
 public final class Config {
-    public static final String BASE_URL = "http://192.168.6.248/rentalsepeda/";
+    public static final String BASE_URL = "http://192.168.137.245/rentalsepeda/";
 
     private static final String API = "api/";
     public static final String BASE_URL_API = BASE_URL + API;
 
-    public static final String UPLOAD_FOLDER = "uploads/";
+    public static final String UPLOAD_FOLDER = "upload/";
     public static final String BASE_URL_UPLOADS = BASE_URL + UPLOAD_FOLDER;
 
     public static final String TOAST_AN_ERROR = "Mohon maaf, terjadi kendala jaringan / server";

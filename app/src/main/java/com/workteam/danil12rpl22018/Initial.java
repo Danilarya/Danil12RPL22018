@@ -18,8 +18,8 @@ public class Initial extends Application {
         super.onCreate();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        if(BuildConfig.DEBUG)
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        if(BuildConfig.DEBUG)
+//            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(120, TimeUnit.SECONDS)
