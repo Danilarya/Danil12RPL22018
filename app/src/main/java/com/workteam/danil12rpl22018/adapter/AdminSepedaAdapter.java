@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.squareup.picasso.Picasso;
 import com.workteam.danil12rpl22018.R;
 import com.workteam.danil12rpl22018.activity.Admin.AdminSepedaActivity;
+import com.workteam.danil12rpl22018.helper.AppHelper;
 import com.workteam.danil12rpl22018.helper.Config;
 import com.workteam.danil12rpl22018.model.SepedaModel;
 
@@ -77,12 +79,12 @@ public class AdminSepedaAdapter extends RecyclerView.Adapter<AdminSepedaAdapter.
     }
 
         public class SepedaViewHolder extends RecyclerView.ViewHolder {
-            private RelativeLayout divDetail;
+            private LinearLayout divDetail;
             private TextView tvKodeSepeda, tvMerkSepeda;
-            private ImageView divDelete, ivSepeda;
+            private ImageView divDelete;
             public SepedaViewHolder(@NonNull View itemView) {
                 super(itemView);
-                ivSepeda = itemView.findViewById(R.id.ivSepeda);
+                divDetail = itemView.findViewById(R.id.divdetail);
                 divDelete = itemView.findViewById(R.id.ivDelete);
                 tvKodeSepeda = itemView.findViewById(R.id.tvKode);
                 tvMerkSepeda = itemView.findViewById(R.id.tvMerk);
@@ -90,25 +92,13 @@ public class AdminSepedaAdapter extends RecyclerView.Adapter<AdminSepedaAdapter.
             private void bind(final SepedaModel Amodel) {
                 tvKodeSepeda.setText(Amodel.getUNIT_KODE());
                 tvMerkSepeda.setText(Amodel.getUNIT_MERK());
-                Picasso.with(mContext)
-                        .load(Config.BASE_URL_UPLOADS+Amodel.getUNIT_GAMBAR())
-                        .into(ivSepeda);
-//            if(Amodel.getUNIT_GAMBAR().contains(Config.UPLOAD_FOLDER)) {
-//                Picasso.with(mContext)
-//                        .load(Config.BASE_URL + Amodel.getUNIT_GAMBAR())
-//                        .into(iv_sepeda);
-//            }
-//            else {
-//                Picasso.with(mContext)
-//                        .load(Config.BASE_URL_UPLOADS + Amodel.getUNIT_GAMBAR())
-//                        .into(iv_sepeda);
-//            }
-//            divDetail.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    AppHelper.goToAdminSepedaDetail(mContext, Amodel);
-//                }
-//            });
+
+            divDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AppHelper.goToAdminSepedaDetail(mContext, Amodel);
+                }
+            });
 
                 divDelete.setOnClickListener(new View.OnClickListener() {
                     private void doNothing() {
@@ -177,7 +167,7 @@ public class AdminSepedaAdapter extends RecyclerView.Adapter<AdminSepedaAdapter.
                         "loginToken:" + mLoginToken + "\n" +
                         "imgId:" + id);
 
-                AndroidNetworking.post(Config.BASE_URL_API + "unitfrontend.php")
+                AndroidNetworking.post(Config.BASE_URL_API + "unit.php")
                         .addBodyParameter("act", "delete_unit")
                         .addBodyParameter("loginToken", mLoginToken)
                         .addBodyParameter("unitId", id)

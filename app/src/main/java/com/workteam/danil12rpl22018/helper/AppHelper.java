@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.workteam.danil12rpl22018.activity.Admin.AdminSepedaDetailActivity;
 import com.workteam.danil12rpl22018.activity.Admin.AdminUserDetailActivity;
 import com.workteam.danil12rpl22018.model.SepedaModel;
 import com.workteam.danil12rpl22018.model.UserAdminModel;
@@ -66,9 +67,9 @@ public final class AppHelper {
         bundle.putString("UNIT_HARGASEWA", rowData.getUNIT_HARGA());
         bundle.putString("UNIT_GAMBAR", rowData.getUNIT_GAMBAR().toUpperCase());
 
-//        Intent i = new Intent(context, AdminSepedaDetailActivity.class);
-//        i.putExtra("extra_sepeda", rowData);
-//        context.startActivity(i);
+        Intent i = new Intent(context, AdminSepedaDetailActivity.class);
+        i.putExtra("extra_sepeda", rowData);
+        context.startActivity(i);
     }
 
 }
